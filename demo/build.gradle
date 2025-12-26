@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// AWS BOM : 버전 관리자
+	implementation platform('software.amazon.awssdk:bom:2.29.52')
+	
+	// S3 라이브러리
+	implementation 'software.amazon.awssdk:s3'
+
+	// SDK 내부 로깅용
+	implementation 'org.slf4j:slf4j-simple:2.0.17'
+
+	// https://mvnrepository.com/artifact/software.amazon.awssdk/sts
+	implementation 'software.amazon.awssdk:sts'
+}

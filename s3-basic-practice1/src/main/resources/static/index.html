@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드</title>
+</head>
+<body>
+    <h1>S3 파일 업로드</h1>
+    
+    <form action="/upload-file" method="post" enctype="multipart/form-data">
+        <p>
+            <label for="file">파일 선택:</label>
+            <input type="file" id="file" name="file" required>
+        </p>
+        <p>
+            <button type="submit">업로드</button>
+        </p>
+    </form>
+</body>
+</html>
