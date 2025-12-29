@@ -1,7 +1,7 @@
 package com.example.s3.model;
 
 // record
-// 모든 필드는 자동으로 pivate final 처리
+// 모든 필드는 자동으로 private final 처리
 // @NoArgsConstructor 미지원
 // @AllArgsConstructor 지원
 // @Setter 미지원
