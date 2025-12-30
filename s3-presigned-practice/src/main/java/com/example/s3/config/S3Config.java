@@ -9,7 +9,7 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 @Configuration
 public class S3Config {
-
+    
     @Bean
     S3Client s3Client() {
         return S3Client.builder()
@@ -21,7 +21,6 @@ public class S3Config {
     S3Presigner s3Presigner() {
         return S3Presigner.builder()
             .region(Region.AP_NORTHEAST_2)
-            
             .build();
     }
 }
