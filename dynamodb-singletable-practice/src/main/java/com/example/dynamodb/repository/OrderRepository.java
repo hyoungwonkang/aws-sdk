@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.dynamodb.entity.ProductHistory;
+import com.example.dynamodb.entity.Order;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -17,28 +17,28 @@ import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductHistoryRepository {
+public class OrderRepository {
 
     private final DynamoDbEnhancedClient enhancedClient;
-    private DynamoDbTable<ProductHistory> historyTable;
+    private DynamoDbTable<Order> orderTable;
 
     @PostConstruct
     public void init() {
-        this.historyTable = enhancedClient.table("ProductHistory-khw", TableSchema.fromBean(ProductHistory.class));
+        this.orderTable = enhancedClient.table("Shopdata-khw", TableSchema.fromBean(Order.class));
     }
 
-    public void save(ProductHistory history) {
-        historyTable.putItem(history);
+    public void save(Order order) {
+        orderTable.putItem(order);
     }
 
-    public List<ProductHistory> findByUserId(String userId, boolean scanIndexForward) {
+    public List<Order> findByUserId(String userId, boolean scanIndexForward) {
         Key key = Key.builder()
             .partitionValue(userId)
             .build();
 
         QueryConditional queryConditional = QueryConditional.keyEqualTo(key);
        
-        return historyTable.query(req -> req
+        return orderTable.query(req -> req
             .queryConditional(queryConditional)
             .scanIndexForward(scanIndexForward))
             .items()

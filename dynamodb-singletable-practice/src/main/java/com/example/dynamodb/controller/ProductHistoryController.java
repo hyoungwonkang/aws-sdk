@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dynamodb.dto.ProductHistoryCreateRequest;
-import com.example.dynamodb.dto.ProductHistoryResponse;
+import com.example.dynamodb.dto.OrderRequest;
+import com.example.dynamodb.dto.OrderResponse;
 import com.example.dynamodb.service.ProductHistoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,13 +24,13 @@ public class ProductHistoryController {
     private final ProductHistoryService historyService;
 
     @PostMapping
-    public String save(@RequestBody ProductHistoryCreateRequest request) {
+    public String save(@RequestBody OrderRequest request) {
         historyService.saveHistory(request.userId(), request.productId(), request.productName(), request.price());
         return "Saved!";
     }
 
     @GetMapping("/{userId}")
-    public List<ProductHistoryResponse> getHistories(@PathVariable String userId) {
+    public List<OrderResponse> getHistories(@PathVariable String userId) {
         return historyService.getUserHistories(userId);
     }
 }

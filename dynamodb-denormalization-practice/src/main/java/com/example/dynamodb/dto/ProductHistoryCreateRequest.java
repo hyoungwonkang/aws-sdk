@@ -1,9 +1,9 @@
 package com.example.dynamodb.dto;
 
-public record ProductViewRequest(
+public record ProductHistoryCreateRequest(
     String userId,
     String productId,
     String productName,
-    Integer price
+    Long price
 ) {
 }

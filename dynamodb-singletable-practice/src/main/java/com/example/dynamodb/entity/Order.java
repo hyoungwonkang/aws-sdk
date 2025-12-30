@@ -13,28 +13,34 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortK
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamoDbBean // @Entity 역할
-public class ProductHistory {
-    private String userId;
-    private String viewTime;
-    private String productId;
-    private String productName;
-    private Long price;
+public class Order {
+    private String PK;
+    private String SK;
+    private String type;
+    private String info;
+    private Integer amount;
 
     @DynamoDbPartitionKey // @Id 역할
-    public String getUserId() {
-        return userId ;
+    public String getPK() {
+        return PK;
     }
     @DynamoDbSortKey
-    public String getViewTime() {
-        return viewTime;
+    public String getSK() {
+        return SK;
     }
-    public String getProductId() {
-        return productId;
+    public String getType() {
+        return type;
     }
-    public String getProductName() {
-        return productName;
+    public String getInfo() {
+        return info;
     }
-    public Long getPrice() {
-        return price;
+    public Integer getAmount() {
+        return amount;
+    }
+    public void setSKForInfo() {
+        this.SK = "INFO";
+    }
+    public void setSKForItem(String itemId) {
+        this.SK = "ITEM#" + itemId;
     }
 }

@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dynamodb.dto.ProductHistoryResponse;
-import com.example.dynamodb.entity.ProductHistory;
-import com.example.dynamodb.repository.ProductHistoryRepository;
+import com.example.dynamodb.dto.OrderResponse;
+import com.example.dynamodb.entity.Order;
+import com.example.dynamodb.repository.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,21 +17,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductHistoryService {
 
-    private final ProductHistoryRepository repository;
+    private final OrderRepository repository;
 
     public void saveHistory(String userId, String productId, String productName, Long price) {
 
         String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
         String sortKey = timeStamp + "#" + productId;
-        ProductHistory productHistory = new ProductHistory(userId, sortKey, productId, productName, price);
+        Order productHistory = new Order(userId, sortKey, productId, productName, price);
         
         repository.save(productHistory);
     }
 
-    public List<ProductHistoryResponse> getUserHistories(String userId) {
+    public List<OrderResponse> getUserHistories(String userId) {
         return repository.findByUserId(userId, false)
          .stream()
-         .map(ProductHistoryResponse::new)
+         .map(OrderResponse::new)
          .collect(Collectors.toList());
     }
 }
