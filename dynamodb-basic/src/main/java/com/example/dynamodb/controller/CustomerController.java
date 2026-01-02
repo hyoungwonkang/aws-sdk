@@ -21,53 +21,38 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/api/customers")
 public class CustomerController {
-
   private final CustomerService customerService;
 
-  // [저장하기]
-  // POST /api/customers
-  // Body {"name": "kim", "email": "kim@example.com"}
   @PostMapping
   public ResponseEntity<String> save(@RequestBody CustomerCreateRequest request) {
     String customerId = customerService.saveCustomer(
       request.name(),
       request.email()
     );
-    // 201, 등록된 customerId 반환
+
     return ResponseEntity.status(201).body(customerId);
   }
 
-  // [단 건 조회]
-  // GET /api/customers/{customerId}
   @GetMapping("/{customerId}")
   public ResponseEntity<CustomerResponse> find(@PathVariable("customerId") String customerId) {
-    // 조회
     Customer foundCustomer = customerService.getCustomer(customerId);
-    if (foundCustomer == null) {
-      return ResponseEntity.notFound().build();
-    }
-    // 엔티티 -> DTO
+
     CustomerResponse response = new CustomerResponse(
-      foundCustomer.getCustomerId(), 
-      foundCustomer.getName(), 
-      foundCustomer.getEmail(), 
+      foundCustomer.getCustomerId(),
+      foundCustomer.getName(),
+      foundCustomer.getEmail(),
       foundCustomer.getCreatedAt()
     );
-    // 응답 (200, 조회된 고객 정보)
+
     return ResponseEntity.ok(response);
   }
 
-  // [삭제 요청]
-  // DELETE /api/customers/{customerId}
   @DeleteMapping("/{customerId}")
-  public ResponseEntity<Void> deleteCustomer(@PathVariable String customerId) {
+  public ResponseEntity<Void> delete(@PathVariable String customerId) {
     customerService.deleteCustomer(customerId);
-    return ResponseEntity.noContent().build();  // 204
+    return ResponseEntity.status(204).build();
   }
 
-  // [수정 요청]
-  // PUT /api/customers/{customerId}
-  // Body {"name": "kim", "email": "kim@example.com"}
   @PutMapping("/{customerId}")
   public ResponseEntity<CustomerResponse> updateCustomer(
     @PathVariable String customerId,
@@ -75,7 +60,7 @@ public class CustomerController {
   ) {
     Customer updated = customerService.updateCustomer(customerId, request);
     if (updated == null) {
-      return ResponseEntity.notFound().build();
+      return ResponseEntity.status(204).build();
     }
     CustomerResponse response = new CustomerResponse(
       updated.getCustomerId(),

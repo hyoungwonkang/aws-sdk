@@ -9,17 +9,15 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 @Configuration
 public class AwsSdkConfig {
-    
     private final Region SEOUL_REGION = Region.AP_NORTHEAST_2;
-    
+
     @Bean
     DynamoDbClient dynamoDbClient() {
         return DynamoDbClient.builder()
             .region(SEOUL_REGION)
             .build();
     }
-    
-    // 향상 클라이언트
+
     @Bean
     DynamoDbEnhancedClient dynamoDbEnhancedClient(DynamoDbClient dynamoDbClient) {
         return DynamoDbEnhancedClient.builder()

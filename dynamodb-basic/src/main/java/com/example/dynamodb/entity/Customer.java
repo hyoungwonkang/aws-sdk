@@ -1,32 +1,25 @@
 package com.example.dynamodb.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
-@DynamoDbBean // @Entity 역할
+@DynamoDbBean
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@Getter
 public class Customer {
     private String customerId;
     private String name;
     private String email;
-    private Long createdAt; // Timestamp
+    private Long createdAt;
 
-    @DynamoDbPartitionKey // @Id 역할
+    @DynamoDbPartitionKey
     public String getCustomerId() {
         return customerId;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public Long getCreatedAt() {
-        return createdAt;
     }
 }
