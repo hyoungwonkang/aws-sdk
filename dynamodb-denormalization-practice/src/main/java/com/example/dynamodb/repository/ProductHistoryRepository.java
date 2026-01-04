@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.dynamodb.dto.PageResponse;
-import com.example.dynamodb.dto.ProductHistoryResponse;
 import com.example.dynamodb.entity.ProductHistory;
 
 import jakarta.annotation.PostConstruct;
@@ -39,20 +37,12 @@ public class ProductHistoryRepository {
             .build();
 
         QueryConditional queryConditional = QueryConditional.keyEqualTo(key);
-       
+
         return historyTable.query(req -> req
             .queryConditional(queryConditional)
             .scanIndexForward(scanIndexForward))
             .items()
             .stream()
             .collect(Collectors.toList());
-    }
-
-    
-    public PageResponse<ProductHistoryResponse> findPagedPagedHistoriesByUserId(String userId, int limit, String lastViewTime) {
-        // Key
-        Key key = Key.builder()
-            .partitionValue(userId)
-            .build();
     }
 }

@@ -5,5 +5,4 @@ public record ProductHistoryCreateRequest(
     String productId,
     String productName,
     Long price
-) {
-}
+) {}

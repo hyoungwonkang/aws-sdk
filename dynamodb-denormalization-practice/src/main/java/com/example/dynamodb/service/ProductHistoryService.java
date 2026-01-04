@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dynamodb.dto.PageResponse;
 import com.example.dynamodb.dto.ProductHistoryResponse;
 import com.example.dynamodb.entity.ProductHistory;
 import com.example.dynamodb.repository.ProductHistoryRepository;
@@ -36,10 +35,10 @@ public class ProductHistoryService {
          .collect(Collectors.toList());
     }
 
-    /**
-     * 상품 조회 이력 반환 (페이징)
-    */
-    public PageResponse<> getPagedHistories(String userId, int limit, String lastViewTime) {
-        return repository.findPagedPagedHistoriesByUserId(userId, limit, lastViewTime);
-    }
+    // /**
+    //  * 상품 조회 이력 반환 (페이징)
+    // */
+    // public PageResponse<> getPagedHistories(String userId, int limit, String lastViewTime) {
+    //     return repository.findPagedPagedHistoriesByUserId(userId, limit, lastViewTime);
+    // }
 }

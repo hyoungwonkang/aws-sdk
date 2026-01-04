@@ -14,7 +14,7 @@ public class ProductHistoryResponse {
     // Entity -> DTO 변환 생성자 (Factory Method 패턴도 좋음)
     public ProductHistoryResponse(ProductHistory entity) {
         this.userId = entity.getUserId();
-        this.viewTime = entity.getViewTime();
+        this.viewTime = entity.getViewTime();        
         this.productName = entity.getProductName();
         this.price = entity.getPrice();
     }
