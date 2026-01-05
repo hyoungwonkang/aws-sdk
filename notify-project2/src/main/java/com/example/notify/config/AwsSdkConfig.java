@@ -1,4 +1,4 @@
-package com.example.dynamodb.config;
+package com.example.notify.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
