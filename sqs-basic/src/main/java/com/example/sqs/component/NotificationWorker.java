@@ -48,18 +48,12 @@ public class NotificationWorker {
                 // 내용 추출
                 String orderId = messageDto.orderId();
                 Long totalAmount = messageDto.totalAmount();
-                String phone = messageDto.phone();
                 String email = messageDto.email();
 
                 // 이메일 보내기
                 notificationService.sendEmailAsync(
                     email,
                     "[서비스명] 주문이 완료되었습니다", 
-                    "주문ID: " + orderId + "\n총 금액: " + new DecimalFormat("#,##0").format(totalAmount) + "원"
-                );
-
-                notificationService.sendSmsAsync(
-                    phone,
                     "주문ID: " + orderId + "\n총 금액: " + new DecimalFormat("#,##0").format(totalAmount) + "원"
                 );
 

@@ -1,4 +1,4 @@
-package com.example.dynamodb.dto;
+package com.example.sqs.dto;
 
 import java.util.List;
 

@@ -7,6 +7,7 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.ses.SesClient;
+import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.regions.Region;
 
 @Configuration
@@ -32,14 +33,21 @@ public class AwsSdkConfig {
     @Bean
     SesClient sesClient() {
         return SesClient.builder()
-                .region(SEOUL_REGION)
-                .build();
+            .region(SEOUL_REGION)
+            .build();
     }
 
     @Bean
-    SecretsManagerClient secretsClient() {
+    SqsClient sqsClient() {
+        return SqsClient.builder()
+            .region(SEOUL_REGION)
+            .build();
+    }
+
+    @Bean
+    SecretsManagerClient secretsManagerClient() {
         return SecretsManagerClient.builder()
-                .region(SEOUL_REGION)
-                .build();
+            .region(SEOUL_REGION)
+            .build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dynamodb.controller;
+package com.example.sqs.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dynamodb.dto.CreateOrderRequest;
-import com.example.dynamodb.dto.OrderResponse;
-import com.example.dynamodb.dto.EmailRequest;
-import com.example.dynamodb.service.NotificationService;
-import com.example.dynamodb.service.OrderService;
+import com.example.sqs.dto.CreateOrderRequest;
+import com.example.sqs.dto.OrderResponse;
+import com.example.sqs.dto.EmailRequest;
+import com.example.sqs.service.NotificationService;
+import com.example.sqs.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 

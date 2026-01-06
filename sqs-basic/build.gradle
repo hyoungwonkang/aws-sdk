@@ -34,10 +34,10 @@ dependencies {
 	// 이메일 보내기 SES
 	implementation 'software.amazon.awssdk:ses:2.40.16'
 	
-	// https://mvnrepository.com/artifact/software.amazon.awssdk/sqs
+	// SQS
 	implementation 'software.amazon.awssdk:sqs:2.41.1'
 
-	// https://mvnrepository.com/artifact/software.amazon.awssdk/secretsmanager
+	// SecretsManager
 	implementation 'software.amazon.awssdk:secretsmanager:2.41.1'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
