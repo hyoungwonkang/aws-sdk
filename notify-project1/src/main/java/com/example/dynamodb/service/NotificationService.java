@@ -17,7 +17,7 @@ import software.amazon.awssdk.services.ses.model.SendEmailRequest;
 public class NotificationService {
     
     private final SesClient sesClient;
-    private final String SENDER = "hwplus@gmail.com"; // TODO: 공부 후 삭제
+    private final String SENDER = "test@gmail.com";
     
     public String sendEmail(EmailRequest request) {
         // 1. 받는 사람
